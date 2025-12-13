@@ -1,0 +1,726 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1a1d29 0%, #232735 100%);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.backBtn,
+.addBtn {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.backBtn:hover,
+.addBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.balanceSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.flag {
+  font-size: 20px;
+}
+
+.balance {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dropdown {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.mainContent {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gameSection {
+  margin-bottom: 20px;
+}
+
+.resultText {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tile {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tileHidden {
+  background: linear-gradient(145deg, #3a4556, #2d3748);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.tileHidden:hover:not(:disabled) {
+  background: linear-gradient(145deg, #4a5566, #3d4758);
+  transform: scale(1.05);
+}
+
+.tileHidden:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.tileGem {
+  background: linear-gradient(145deg, #10b981, #059669);
+  animation: revealGem 0.5s ease-out;
+}
+
+.tileMinе {
+  background: linear-gradient(145deg, #ef4444, #dc2626);
+  animation: revealMine 0.5s ease-out;
+}
+
+@keyframes revealGem {
+  0% {
+    transform: scale(0.8) rotateY(180deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes revealMine {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.gemIcon,
+.mineIcon {
+  animation: bounceIn 0.5s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.controls {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.amountSection {
+  margin-bottom: 15px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+}
+
+.infoIcon {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.amountInput {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 12px 15px;
+  gap: 10px;
+}
+
+.currencyFlag {
+  font-size: 20px;
+}
+
+.input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.input:disabled {
+  opacity: 0.5;
+}
+
+.multiplierBtns {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.multiplierBtns button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.multiplierBtns button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.multiplierBtns button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.expandBtn {
+  display: flex;
+  flex-direction: column;
+  padding: 2px 8px !important;
+  line-height: 0.8;
+  font-size: 10px;
+}
+
+.betButton,
+.cashOutButton {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.betButton {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.cashOutButton {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.betButton:hover:not(:disabled),
+.cashOutButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+}
+
+.betButton:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.demoNotice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.noticeIcon {
+  color: rgba(16, 185, 129, 0.8);
+}
+
+.profitDisplay {
+  text-align: center;
+  padding: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  margin-top: 10px;
+}
+
+.profitAmount {
+  color: #10b981;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.minesSection {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.minesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.minesIcons {
+  display: flex;
+  gap: 5px;
+  font-size: 18px;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.sliderValue {
+  font-size: 16px;
+  font-weight: 600;
+  min-width: 30px;
+  text-align: center;
+}
+
+.rangeInput {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #10b981 0%, #10b981 var(--value, 0%), rgba(255, 255, 255, 0.2) var(--value, 0%), rgba(255, 255, 255, 0.2) 100%);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.rangeInput::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.rangeInput:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.expandSlider {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 8px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.expandSlider:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.modeTabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.modeTab,
+.modeTabActive {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modeTabActive {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.modeTabActive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #10b981;
+  border-radius: 10px 10px 0 0;
+}
+
+.gameIcons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.iconBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 15px;
+  }
+
+  .backBtn,
+  .addBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .balanceSection {
+    padding: 8px 12px;
+  }
+
+  .balance {
+    font-size: 16px;
+  }
+
+  .mainContent {
+    padding: 15px;
+  }
+
+  .resultText {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .grid {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .tile {
+    font-size: 28px;
+    border-radius: 10px;
+  }
+
+  .controls {
+    padding: 15px;
+  }
+
+  .amountInput {
+    padding: 10px 12px;
+  }
+
+  .input {
+    font-size: 16px;
+  }
+
+  .multiplierBtns button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .betButton,
+  .cashOutButton {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .minesSection {
+    padding: 15px;
+  }
+
+  .minesHeader {
+    font-size: 15px;
+  }
+
+  .minesIcons {
+    font-size: 16px;
+  }
+
+  .slider {
+    gap: 12px;
+  }
+
+  .sliderValue {
+    font-size: 14px;
+    min-width: 25px;
+  }
+
+  .modeTab,
+  .modeTabActive {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .iconBtn {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 12px;
+  }
+
+  .resultText {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .grid {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .tile {
+    font-size: 24px;
+    border-radius: 8px;
+  }
+
+  .controls {
+    padding: 12px;
+  }
+
+  .amountInput {
+    padding: 8px 10px;
+  }
+
+  .multiplierBtns button {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .betButton,
+  .cashOutButton {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .demoNotice {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .profitDisplay {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .profitAmount {
+    font-size: 15px;
+  }
+
+  .minesSection {
+    padding: 12px;
+  }
+
+  .minesHeader {
+    font-size: 14px;
+  }
+
+  .slider {
+    gap: 10px;
+  }
+
+  .sliderValue {
+    font-size: 13px;
+    min-width: 20px;
+  }
+
+  .rangeInput::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+  }
+
+  .rangeInput::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+  }
+
+  .expandSlider {
+    padding: 6px;
+    font-size: 13px;
+  }
+
+  .modeTab,
+  .modeTabActive {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .gameIcons {
+    gap: 10px;
+  }
+
+  .iconBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header {
+    padding: 10px 12px;
+  }
+
+  .balanceSection {
+    padding: 6px 10px;
+  }
+
+  .balance {
+    font-size: 14px;
+  }
+
+  .mainContent {
+    padding: 10px;
+  }
+
+  .grid {
+    gap: 5px;
+    padding: 8px;
+  }
+
+  .tile {
+    font-size: 20px;
+  }
+}
+
+/* Landscape optimization */
+@media (max-width: 896px) and (orientation: landscape) {
+  .grid {
+    max-width: 400px;
+    margin: 0 auto 20px;
+  }
+
+  .tile {
+    font-size: 24px;
+  }
+}

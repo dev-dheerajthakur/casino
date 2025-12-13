@@ -1,0 +1,655 @@
+.carouselContainer {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.carouselContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.carouselHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+}
+
+.titleIcon {
+  font-size: 42px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+}
+
+.controlBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controlBtn:hover {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.6);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.carousel {
+  position: relative;
+  height: 600px;
+  margin-bottom: 40px;
+  overflow: visible;
+}
+
+.carouselTrack {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  position: absolute;
+  width: 400px;
+  height: 550px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  left: 50%;
+  margin-left: -200px;
+}
+
+.cardActive {
+  cursor: default;
+}
+
+.cardAdjacent {
+  pointer-events: auto;
+}
+
+.cardInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover .cardInner {
+  box-shadow: 0 25px 80px rgba(139, 92, 246, 0.6);
+  transform: translateY(-5px);
+}
+
+.badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.cardImage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.emoji {
+  font-size: 120px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+}
+
+.cardTitle {
+  font-size: 42px;
+  font-weight: bold;
+  color: white;
+  margin: 0 0 10px 0;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.cardSubtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 25px 0;
+  font-weight: 500;
+}
+
+.cardStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.statLabel {
+  display: block;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.statValue {
+  display: block;
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+}
+
+.playBtn {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.playBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.playBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.playBtn:hover::before {
+  left: 100%;
+}
+
+.cardGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.card:hover .cardGlow {
+  opacity: 1;
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 20px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.indicatorActive {
+  width: 40px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+}
+
+.autoPlayInfo {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.autoPlayIcon {
+  font-size: 16px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1024px) {
+  .carouselContainer {
+    padding: 30px 15px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .titleIcon {
+    font-size: 32px;
+  }
+
+  .carousel {
+    height: 550px;
+  }
+
+  .card {
+    width: 350px;
+    height: 500px;
+    margin-left: -175px;
+  }
+
+  .emoji {
+    font-size: 100px;
+  }
+
+  .cardTitle {
+    font-size: 36px;
+  }
+
+  .cardSubtitle {
+    font-size: 16px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carouselContainer {
+    padding: 25px 12px;
+  }
+
+  .carouselHeader {
+    margin-bottom: 30px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .titleIcon {
+    font-size: 28px;
+  }
+
+  .controls {
+    gap: 10px;
+  }
+
+  .controlBtn {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+
+  .carousel {
+    height: 500px;
+  }
+
+  .card {
+    width: 320px;
+    height: 480px;
+    margin-left: -160px;
+  }
+
+  .cardInner {
+    padding: 25px;
+  }
+
+  .emoji {
+    font-size: 90px;
+  }
+
+  .cardTitle {
+    font-size: 32px;
+  }
+
+  .cardSubtitle {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .cardStats {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .stat {
+    padding: 12px;
+  }
+
+  .statLabel {
+    font-size: 12px;
+  }
+
+  .statValue {
+    font-size: 18px;
+  }
+
+  .playBtn {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .indicators {
+    gap: 10px;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  .indicatorActive {
+    width: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carouselContainer {
+    padding: 20px 10px;
+  }
+
+  .carouselHeader {
+    margin-bottom: 25px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .titleIcon {
+    font-size: 26px;
+  }
+
+  .controlBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .carousel {
+    height: 480px;
+  }
+
+  .card {
+    width: 290px;
+    height: 450px;
+    margin-left: -145px;
+  }
+
+  .cardInner {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .badge {
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .emoji {
+    font-size: 80px;
+  }
+
+  .cardTitle {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .cardSubtitle {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  .cardStats {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .stat {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .statLabel {
+    font-size: 11px;
+  }
+
+  .statValue {
+    font-size: 16px;
+  }
+
+  .playBtn {
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .indicators {
+    gap: 8px;
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+
+  .indicatorActive {
+    width: 30px;
+  }
+
+  .autoPlayInfo {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .carousel {
+    height: 440px;
+  }
+
+  .card {
+    width: 260px;
+    height: 420px;
+    margin-left: -130px;
+  }
+
+  .cardInner {
+    padding: 18px;
+  }
+
+  .emoji {
+    font-size: 70px;
+  }
+
+  .cardTitle {
+    font-size: 26px;
+  }
+
+  .cardSubtitle {
+    font-size: 13px;
+  }
+
+  .stat {
+    padding: 8px;
+  }
+
+  .statLabel {
+    font-size: 10px;
+  }
+
+  .statValue {
+    font-size: 15px;
+  }
+
+  .playBtn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* Landscape optimization */
+@media (max-width: 896px) and (orientation: landscape) {
+  .carousel {
+    height: 400px;
+  }
+
+  .card {
+    width: 280px;
+    height: 380px;
+    margin-left: -140px;
+  }
+
+  .emoji {
+    font-size: 70px;
+  }
+
+  .cardTitle {
+    font-size: 28px;
+  }
+}
+
+/* Prevent layout shift during transitions */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cardInner,
+  .emoji,
+  .playBtn,
+  .indicator,
+  .controlBtn {
+    transition: none;
+  }
+  
+  .emoji,
+  .badge,
+  .titleIcon {
+    animation: none;
+  }
+}

@@ -1,0 +1,13 @@
+.container {
+  height: 100dvh;
+}
+
+.overlay {
+  background: rgba(128, 0, 255, 0.178);
+  height: calc(100dvh - 60px);
+  width: 100dvw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+}

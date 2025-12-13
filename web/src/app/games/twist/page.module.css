@@ -1,0 +1,783 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1a1d29 0%, #232735 100%);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.backBtn,
+.addBtn {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.backBtn:hover,
+.addBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.balanceSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.flag {
+  font-size: 20px;
+}
+
+.balance {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dropdown {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.mainContent {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gameSection {
+  margin-bottom: 20px;
+}
+
+.gameResult {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.resultText {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.wheelCanvas {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  aspect-ratio: 1;
+}
+
+.profitDisplay {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.bettingPanel {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.amountSection {
+  margin-bottom: 15px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+}
+
+.infoIcon {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.amountInput {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 12px 15px;
+  gap: 10px;
+}
+
+.currencyFlag {
+  font-size: 20px;
+}
+
+.input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.multiplierBtns {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.multiplierBtns button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.multiplierBtns button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.expandBtn {
+  display: flex;
+  flex-direction: column;
+  padding: 2px 8px !important;
+  line-height: 0.8;
+  font-size: 10px;
+}
+
+.betButton {
+  width: 100%;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.betButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+}
+
+.betButton:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.demoNotice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.noticeIcon {
+  color: rgba(16, 185, 129, 0.8);
+}
+
+.cashOutSection {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cashOutLatest,
+.cashOutAll {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+.cashOutLatest {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cashOutAll {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: white;
+}
+
+.winAmountDisplay {
+  margin-top: 15px;
+}
+
+.winLabel {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+}
+
+.winValue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.gameIcons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.iconBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+.twistSection {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 15px;
+}
+
+.twistInfo {
+  flex: 1;
+}
+
+.twistTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.twistBy {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.bcOriginals {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.twistIcon {
+  font-size: 32px;
+}
+
+.twistDropdown,
+.playTwist {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playTwist {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.recommendedSection {
+  margin-bottom: 20px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sectionHeader h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.navButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.allBtn,
+.navBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 15px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.allBtn:hover,
+.navBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.gameCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.gameCard {
+  border-radius: 15px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.gameCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.gameMultiplier {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.gameTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.gamePlayers {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.betsSection {
+  margin-bottom: 20px;
+}
+
+.limitSelect {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 15px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.betsTabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.tab,
+.tabActive {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.tabActive {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.betsTable {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.2fr;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.betRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.2fr;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.betRow:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.betRow:last-child {
+  border-bottom: none;
+}
+
+.betId {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.betUser {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.betMultiplier {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.profitPositive {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.profitNegative {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 15px;
+  }
+
+  .backBtn,
+  .addBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .balanceSection {
+    padding: 8px 12px;
+  }
+
+  .balance {
+    font-size: 16px;
+  }
+
+  .mainContent {
+    padding: 15px;
+  }
+
+  .gameResult {
+    padding: 15px;
+  }
+
+  .wheelCanvas {
+    max-width: 100%;
+  }
+
+  .profitDisplay {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .bettingPanel {
+    padding: 15px;
+  }
+
+  .amountInput {
+    padding: 10px 12px;
+  }
+
+  .input {
+    font-size: 16px;
+  }
+
+  .multiplierBtns button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .betButton {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .gameCards {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .gameMultiplier {
+    font-size: 28px;
+  }
+
+  .gameTitle {
+    font-size: 20px;
+  }
+
+  .gamePlayers {
+    font-size: 11px;
+  }
+
+  .tableHeader,
+  .betRow {
+    grid-template-columns: 0.8fr 1fr 0.8fr 1fr;
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .betsTabs {
+    gap: 8px;
+  }
+
+  .tab,
+  .tabActive {
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 12px;
+  }
+
+  .gameResult {
+    padding: 12px;
+  }
+
+  .resultText {
+    font-size: 13px;
+  }
+
+  .profitDisplay {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .bettingPanel {
+    padding: 12px;
+  }
+
+  .amountInput {
+    padding: 8px 10px;
+  }
+
+  .multiplierBtns button {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .betButton {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .demoNotice {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .cashOutSection {
+    padding: 15px;
+  }
+
+  .cashOutLatest,
+  .cashOutAll {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+
+  .gameIcons {
+    gap: 10px;
+  }
+
+  .iconBtn {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+
+  .twistSection {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .twistTitle {
+    font-size: 16px;
+  }
+
+  .twistBy {
+    font-size: 12px;
+  }
+
+  .twistIcon {
+    font-size: 28px;
+  }
+
+  .twistDropdown,
+  .playTwist {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .sectionHeader h3 {
+    font-size: 16px;
+  }
+
+  .gameCards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .tableHeader,
+  .betRow {
+    grid-template-columns: 0.7fr 0.9fr 0.7fr 1fr;
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .betsTabs {
+    gap: 6px;
+  }
+
+  .tab,
+  .tabActive {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .header {
+    padding: 10px 12px;
+  }
+
+  .balanceSection {
+    padding: 6px 10px;
+  }
+
+  .balance {
+    font-size: 14px;
+  }
+
+  .mainContent {
+    padding: 10px;
+  }
+
+  .tableHeader,
+  .betRow {
+    grid-template-columns: 0.6fr 0.8fr 0.6fr 0.9fr;
+    padding: 8px;
+    font-size: 10px;
+  }
+}
+
+/* Landscape optimization */
+@media (max-width: 896px) and (orientation: landscape) {
+  .wheelCanvas {
+    max-width: 300px;
+  }
+
+  .gameCards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,433 @@
+.cardContainer {
+  /* height: calc(100% - 100px); */
+  /* overflow: auto; */
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  /* Let grid control width, fix height */
+  height: 300px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+.card:focus {
+  outline: none;
+}
+
+.cardActive {
+  cursor: default;
+}
+
+.cardAdjacent {
+  pointer-events: auto;
+}
+
+.cardInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover .cardInner {
+  box-shadow: 0 25px 80px rgba(139, 92, 246, 0.6);
+  transform: translateY(-5px);
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.cardImage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emoji {
+  font-size: 40px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  margin: 0 0 5px 0;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.cardSubtitle {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.cardStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.stat {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 5px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.statLabel {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.statValue {
+  display: block;
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+}
+
+.playBtn {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.playBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.playBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.playBtn:hover::before {
+  left: 100%;
+}
+
+.cardGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.card:hover .cardGlow {
+  opacity: 1;
+}
+
+
+/* Mobile Responsive Styles */
+@media (max-width: 1024px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .card {
+    height: 400px;
+  }
+
+  .emoji {
+    font-size: 80px;
+  }
+
+  .cardTitle {
+    font-size: 28px;
+  }
+
+  .cardSubtitle {
+    font-size: 14px;
+  }
+
+  .statValue {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .card {
+    height: 380px;
+  }
+
+  .cardInner {
+    padding: 20px;
+  }
+
+  .emoji {
+    font-size: 70px;
+  }
+
+  .cardTitle {
+    font-size: 24px;
+  }
+
+  .cardSubtitle {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  .cardStats {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .stat {
+    padding: 10px;
+  }
+
+  .statLabel {
+    font-size: 11px;
+  }
+
+  .statValue {
+    font-size: 16px;
+  }
+
+  .playBtn {
+    padding: 14px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .card {
+    height: 220px;
+  }
+
+  .cardInner {
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .badge {
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    font-size: 8px;
+  }
+
+  .cardImage {
+    margin-bottom: -20px;
+  }
+
+  .emoji {
+    font-size: 36px;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+  }
+
+  .cardSubtitle {
+    font-size: 9px;
+    margin-bottom: 6px;
+  }
+
+  .cardStats {
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .stat {
+    padding: 6px 8px;
+    border-radius: 8px;
+  }
+
+  .statLabel {
+    font-size: 7px;
+    margin-bottom: 3px;
+  }
+
+  .statValue {
+    font-size: 10px;
+  }
+
+  .playBtn {
+    padding: 8px;
+    font-size: 9px;
+    border-radius: 10px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 360px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+
+  .card {
+    min-height: 200px;
+  }
+
+  .cardInner {
+    padding: 10px;
+  }
+
+  .emoji {
+    font-size: 32px;
+  }
+
+  .cardTitle {
+    font-size: 12px;
+  }
+
+  .cardSubtitle {
+    font-size: 8px;
+  }
+
+  .stat {
+    padding: 5px 7px;
+  }
+
+  .statLabel {
+    font-size: 6px;
+  }
+
+  .statValue {
+    font-size: 9px;
+  }
+
+  .playBtn {
+    padding: 7px;
+    font-size: 8px;
+  }
+}
+
+/* Landscape optimization */
+@media (max-width: 896px) and (orientation: landscape) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .card {
+    min-height: 280px;
+  }
+
+  .emoji {
+    font-size: 50px;
+  }
+
+  .cardTitle {
+    font-size: 20px;
+  }
+}
+
+/* Prevent layout shift during transitions */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cardInner,
+  .emoji,
+  .playBtn,
+  .indicator,
+  .controlBtn {
+    transition: none;
+  }
+  
+  .emoji,
+  .badge,
+  .titleIcon {
+    animation: none;
+  }
+}

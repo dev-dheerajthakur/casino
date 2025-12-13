@@ -1,0 +1,111 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(15, 15, 20, 0.8) 0%, rgba(15, 15, 20, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 16px 20px 16px;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  height: 60px;
+}
+
+.interactiveLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  color: #a0a0a0;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  min-width: 64px;
+}
+
+.interactiveLink:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.interactiveLink:active {
+  transform: translateY(0px);
+}
+
+.linkIcon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  stroke-width: 2;
+}
+
+.interactiveLink:hover .linkIcon {
+  stroke-width: 2.5;
+}
+
+.linkText {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Active state - styled via inline style in InteractiveLink component */
+.interactiveLink[style*="green"] {
+  color: #10b981 !important;
+}
+
+.interactiveLink[style*="green"]::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 3px;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.interactiveLink[style*="green"] .linkIcon {
+  stroke-width: 2.5;
+  filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
+}
+
+.interactiveLink[style*="green"] .linkText {
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px 8px 16px 8px;
+  }
+  
+  .interactiveLink {
+    min-width: 56px;
+    padding: 6px 8px;
+  }
+  
+  .linkText {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px 20px 0 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}

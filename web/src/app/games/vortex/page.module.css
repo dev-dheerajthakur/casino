@@ -1,0 +1,751 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.backBtn,
+.addBtn {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.backBtn:hover,
+.addBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.balanceSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.flag {
+  font-size: 20px;
+}
+
+.balance {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dropdown {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.particlesContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.8), transparent);
+  border-radius: 50%;
+  animation: float 8s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.mainContent {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.gameSection {
+  margin-bottom: 20px;
+}
+
+.vortexContainer {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  margin: 0 auto 30px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.2) 0%, rgba(0, 0, 0, 0.4) 70%);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.4);
+}
+
+.vortexCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.resultOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.resultText {
+  text-align: center;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.winText .resultLabel {
+  color: #10b981;
+}
+
+.loseText .resultLabel {
+  color: #ef4444;
+}
+
+.resultLabel {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 0 0 20px currentColor;
+}
+
+.resultAmount {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+}
+
+.multiplierGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.multiplierBtn {
+  border: none;
+  border-radius: 15px;
+  padding: 20px 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.multiplierBtn:hover:not(:disabled) {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.multiplierBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.multiplierSelected {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.6) !important;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.6);
+  }
+  50% {
+    box-shadow: 0 8px 40px rgba(139, 92, 246, 0.9);
+  }
+}
+
+.multiplierValue {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.multiplierChance {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.controls {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.amountSection {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.amountInput {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  padding: 15px;
+  gap: 12px;
+  transition: all 0.3s;
+}
+
+.amountInput:focus-within {
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.currencyFlag {
+  font-size: 24px;
+}
+
+.input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.input:disabled {
+  opacity: 0.5;
+}
+
+.quickBets {
+  display: flex;
+  gap: 8px;
+}
+
+.quickBets button {
+  background: rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  border-radius: 8px;
+  padding: 8px 14px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quickBets button:hover:not(:disabled) {
+  background: rgba(139, 92, 246, 0.5);
+  transform: scale(1.05);
+}
+
+.quickBets button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spinButton {
+  width: 100%;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border: none;
+  border-radius: 12px;
+  padding: 18px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.spinButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.spinButton:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.spinButton:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.6);
+}
+
+.spinButton:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.potentialWin {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.winAmount {
+  color: #10b981;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.gameInfo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.infoCard {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.infoLabel {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.infoValue {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+}
+
+.historySection {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.historyTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+  color: white;
+}
+
+.historyTable {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 15px;
+  background: rgba(139, 92, 246, 0.2);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.betRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.betRow:hover {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.betRow:last-child {
+  border-bottom: none;
+}
+
+.betUser {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.betAmount {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.betMultiplier {
+  color: #8b5cf6;
+  font-weight: 600;
+}
+
+.profitPositive {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.profitNegative {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 15px;
+  }
+
+  .backBtn,
+  .addBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .balanceSection {
+    padding: 8px 12px;
+  }
+
+  .balance {
+    font-size: 16px;
+  }
+
+  .mainContent {
+    padding: 15px;
+  }
+
+  .vortexContainer {
+    height: 400px;
+    max-width: 100%;
+  }
+
+  .resultLabel {
+    font-size: 28px;
+  }
+
+  .resultAmount {
+    font-size: 36px;
+  }
+
+  .multiplierGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .multiplierValue {
+    font-size: 24px;
+  }
+
+  .multiplierChance {
+    font-size: 13px;
+  }
+
+  .controls {
+    padding: 20px;
+  }
+
+  .amountInput {
+    padding: 12px;
+  }
+
+  .input {
+    font-size: 18px;
+  }
+
+  .quickBets button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .spinButton {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .potentialWin {
+    font-size: 15px;
+  }
+
+  .winAmount {
+    font-size: 18px;
+  }
+
+  .gameInfo {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .infoCard {
+    padding: 15px;
+  }
+
+  .infoValue {
+    font-size: 20px;
+  }
+
+  .historySection {
+    padding: 20px;
+  }
+
+  .historyTitle {
+    font-size: 18px;
+  }
+
+  .tableHeader,
+  .betRow {
+    grid-template-columns: 0.8fr 1fr 0.8fr 1fr;
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 12px;
+  }
+
+  .vortexContainer {
+    height: 350px;
+  }
+
+  .resultLabel {
+    font-size: 24px;
+  }
+
+  .resultAmount {
+    font-size: 32px;
+  }
+
+  .multiplierGrid {
+    gap: 10px;
+  }
+
+  .multiplierBtn {
+    padding: 15px 10px;
+  }
+
+  .multiplierValue {
+    font-size: 22px;
+  }
+
+  .multiplierChance {
+    font-size: 12px;
+  }
+
+  .controls {
+    padding: 15px;
+  }
+
+  .amountInput {
+    padding: 10px;
+  }
+
+  .input {
+    font-size: 16px;
+  }
+
+  .quickBets button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .spinButton {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .potentialWin {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .winAmount {
+    font-size: 16px;
+  }
+
+  .infoCard {
+    padding: 12px;
+  }
+
+  .infoLabel {
+    font-size: 12px;
+  }
+
+  .infoValue {
+    font-size: 18px;
+  }
+
+  .historySection {
+    padding: 15px;
+  }
+
+  .historyTitle {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .tableHeader,
+  .betRow {
+    grid-template-columns: 0.7fr 0.9fr 0.7fr 1fr;
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .vortexContainer {
+    height: 300px;
+  }
+
+  .multiplierGrid {
+    gap: 8px;
+  }
+
+  .multiplierBtn {
+    padding: 12px 8px;
+  }
+
+  .multiplierValue {
+    font-size: 20px;
+  }
+
+  .resultLabel {
+    font-size: 20px;
+  }
+
+  .resultAmount {
+    font-size: 28px;
+  }
+
+  .tableHeader,
+  .betRow {
+    grid-template-columns: 0.6fr 0.8fr 0.6fr 0.9fr;
+    padding: 8px;
+    font-size: 11px;
+  }
+}
+
+/* Landscape optimization */
+@media (max-width: 896px) and (orientation: landscape) {
+  .vortexContainer {
+    height: 300px;
+  }
+
+  .gameInfo {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

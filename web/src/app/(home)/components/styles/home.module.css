@@ -1,0 +1,83 @@
+/* app/page.module.css - dark casino theme */
+.page {
+  min-height: 100vh;
+  padding: 18px;
+  background: linear-gradient(180deg, #08090f 0%, #000000 100%);
+  color: #e6eef6;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.logo { font-weight: 700; font-size: 1rem; }
+.actions { display:flex; gap:10px; align-items:center; }
+.balance { background: rgba(255,255,255,0.04); padding:6px 10px; border-radius:8px; }
+.depositBtn { background: #10b981; color:white; border:none; padding:6px 10px; border-radius:8px; }
+
+/* hero */
+.hero { display:flex; gap:12px; flex-direction:column; margin-bottom:14px; }
+.heroCarousel { position:relative; border-radius:12px; overflow:hidden; }
+.heroImage { width:100%; display:none; opacity:0; transform:scale(1.02); transition:all .35s ease; }
+.heroImage.active { display:block; opacity:1; transform:scale(1); }
+.heroDots { position:absolute; left:12px; bottom:8px; display:flex; gap:6px; }
+.dot { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,0.12); border:none; }
+.dotActive { background: linear-gradient(135deg,#6366f1,#ec4899); box-shadow:0 6px 18px rgba(99,102,241,0.08); }
+
+/* mini banners */
+.bannerMini { display:flex; gap:10px; margin-top:10px; }
+.miniItem { flex:1; background: rgba(255,255,255,0.02); padding:10px; border-radius:10px; }
+
+/* featured */
+.featured { margin-top:10px; }
+.sectionHead { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.featuredRow { display:flex; gap:10px; align-items:flex-start; }
+.featuredCard { flex:1.2; background: linear-gradient(180deg, rgba(20,20,30,0.9), rgba(8,8,12,0.9)); border-radius:12px; padding:12px; display:flex; gap:12px; align-items:center; }
+.featuredThumb { width:120px; height:78px; border-radius:10px; background:linear-gradient(135deg,#0f172a,#020617); display:grid; place-items:center; color:#a5b4fc; font-weight:700; }
+.featuredMeta { flex:1; display:flex; justify-content:space-between; align-items:center; }
+.playBtn { background:#10b981; color:white; border:none; padding:8px 12px; border-radius:999px; }
+
+/* small list */
+.smallList { width:240px; display:flex; flex-direction:column; gap:8px; }
+.smallCard { background: rgba(255,255,255,0.02); padding:8px; border-radius:10px; display:flex; align-items:center; gap:8px; }
+.smallThumb { width:64px; height:44px; border-radius:8px; background:linear-gradient(135deg,#071130,#020617); display:grid; place-items:center; color:#c7d2fe; }
+.smallPlay { background:#6366f1; color:white; border:none; padding:6px 8px; border-radius:999px; }
+
+/* providers */
+.providers { margin-top:16px; }
+.providersGrid { display:flex; gap:10px; overflow:auto; padding-bottom:6px; }
+.provider { min-width:92px; background: rgba(255,255,255,0.02); padding:10px; border-radius:10px; display:flex; align-items:center; gap:8px; }
+.providerLogo { width:40px; height:40px; border-radius:8px; background:linear-gradient(135deg,#111827,#0b1220); display:grid; place-items:center; font-weight:700; }
+.providerName { font-size:0.85rem; color:#d1d5db; }
+
+/* catalog */
+.catalog { margin-top:18px; }
+.catalogHeader { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.filterRow { display:flex; gap:8px; }
+.filterBtn { padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.02); border:none; color:#d1d5db; }
+
+/* games grid */
+.gamesGrid { display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:10px; }
+.gameCard { background: rgba(255,255,255,0.02); padding:10px; border-radius:10px; display:flex; flex-direction:column; gap:8px; position:relative; }
+.gameThumb { height:84px; border-radius:8px; background:linear-gradient(135deg,#020617,#071130); display:grid; place-items:center; color:#c7d2fe; }
+.gameInfo { display:flex; justify-content:space-between; align-items:center; }
+
+/* promos */
+.promoRow { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:10px; margin-top:18px; }
+.promoCard { background: linear-gradient(180deg,#091022,#02040a); padding:12px; border-radius:10px; }
+
+/* bottom nav */
+.bottomNav { position:fixed; left:12px; right:12px; bottom:12px; display:flex; justify-content:space-between; gap:6px; background: rgba(0,0,0,0.6); padding:8px 10px; border-radius:14px; backdrop-filter: blur(6px); }
+.navBtn { flex:1; border:none; background:transparent; color:#cbd5e1; padding:8px; border-radius:8px; }
+.navBtn.active { color:#fff; background: rgba(255,255,255,0.04); }
+
+/* responsive tweaks */
+@media (max-width: 900px) {
+  .featuredRow { flex-direction:column; }
+  .smallList { width:100%; flex-direction:row; overflow:auto; }
+  .heroImage { height:200px; object-fit:cover; }
+}

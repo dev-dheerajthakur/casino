@@ -1,0 +1,421 @@
+/* app/profile/profile.module.css */
+
+.page {
+  min-height: 100vh;
+  padding: 24px;
+  background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000000 100%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  color: #e5e7eb;
+}
+
+.layout {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: 16px;
+}
+
+/* Left profile card */
+
+.profileCard {
+  background: rgba(15, 23, 42, 0.96);
+  border-radius: 24px;
+  padding: 18px 16px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(18px);
+}
+
+.headerRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: radial-gradient(circle at top, #4f46e5, #111827);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.avatarInitials {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #f9fafb;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+  position: absolute;
+  bottom: 3px;
+  right: 0;
+  border: 2px solid #020617;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.username {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.email {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+/* Badges */
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.vipBadge {
+  background: rgba(234, 179, 8, 0.1);
+  border-color: rgba(234, 179, 8, 0.6);
+  color: #facc15;
+}
+
+.kycBadge {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.6);
+  color: #4ade80;
+}
+
+.secureBadge {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.6);
+  color: #93c5fd;
+}
+
+.insecureBadge {
+  background: rgba(248, 113, 113, 0.12);
+  border-color: rgba(248, 113, 113, 0.6);
+  color: #fecaca;
+}
+
+/* Meta */
+
+.metaRow {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(55, 65, 81, 0.8);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 8px;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metaLabel {
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+.metaValueRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metaValue {
+  font-size: 0.8rem;
+  color: #e5e7eb;
+}
+
+.copyButton {
+  border: none;
+  background: transparent;
+  font-size: 0.7rem;
+  color: #a5b4fc;
+  cursor: pointer;
+}
+
+/* Actions */
+
+.actionsRow {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+}
+
+.primaryButton {
+  flex: 1;
+  padding: 9px 10px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  color: #f9fafb;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.5);
+}
+
+.secondaryButton {
+  flex: 1;
+  padding: 9px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* Right side */
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  background: rgba(15, 23, 42, 0.96);
+  border-radius: 20px;
+  padding: 14px 14px 12px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.currencyTag {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+/* Balance */
+
+.balanceGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.balanceBlock {
+  background: radial-gradient(circle at top, #020617, #020617);
+  border-radius: 14px;
+  padding: 8px 9px;
+  border: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.amountRow {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amountMain {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.amountSub {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+.amountChip,
+.amountChipMuted {
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.amountChip {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+}
+
+.amountChipMuted {
+  background: rgba(129, 140, 248, 0.16);
+  color: #c7d2fe;
+}
+
+.helperText {
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+.inlineActions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chipButton {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+/* Lists */
+
+.gridTwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.listTitle {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.listDesc {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.smallButton {
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.95);
+  font-size: 0.7rem;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+/* Logout */
+
+.logoutRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.logoutTitle {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.logoutDesc {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.dangerButton {
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  color: #f9fafb;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .metaRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 18px 12px 24px;
+  }
+
+  .profileCard,
+  .card {
+    border-radius: 18px;
+  }
+
+  .metaRow {
+    grid-template-columns: 1fr;
+  }
+
+  .balanceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .gridTwo {
+    grid-template-columns: 1fr;
+  }
+}

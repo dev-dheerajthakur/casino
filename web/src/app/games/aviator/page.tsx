@@ -150,7 +150,7 @@ export default function CrashGame() {
         const lastPoint = points[points.length - 1];
         ctx.fillStyle = '#ef4444';
         ctx.beginPath();
-        ctx.arc(lastPoint[0], lastPoint[1], 8, 0, Math.PI * 2);
+        ctx.arc(lastPoint[0], lastPoint[1], 18, 0, Math.PI * 2);
         ctx.fill();
       }
     }

@@ -1,0 +1,32 @@
+.panel {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+}
+
+.amount {
+  display: flex;
+  align-items: center;
+  background: #1a1c1f;
+  border-radius: 10px;
+  padding: 8px;
+  gap: 10px;
+}
+
+.amount button {
+  background: #2a2d31;
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.bet {
+  flex: 1;
+  background: #22c55e;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 12px;
+}

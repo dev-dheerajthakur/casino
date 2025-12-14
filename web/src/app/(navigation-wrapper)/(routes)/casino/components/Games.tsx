@@ -43,7 +43,7 @@ let games: GameCard[] = [
     title: "WHEEL",
     subtitle: "Spin to Fortune",
     image: "🎡",
-    href: "/game/wheel",
+    href: "/game/twist",
     gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
     multiplier: "175x",
     players: 654,
@@ -54,7 +54,7 @@ let games: GameCard[] = [
     title: "MINES",
     subtitle: "Find the Gems",
     image: "💎",
-    href: "/game/mines",
+    href: "/game/mine",
     gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
     multiplier: "24x",
     players: 432,
@@ -104,7 +104,6 @@ let games: GameCard[] = [
   },
 ];
 
-
 games = [
   {
     id: 1,
@@ -122,7 +121,7 @@ games = [
     title: "PLINKO",
     subtitle: "Drop & Win",
     image: "🎯",
-    href: "/game/plinko",
+    href: "/games/plinko",
     gradient: "linear-gradient(135deg, #8a4b92 0%, #8a2d3c 100%)",
     multiplier: "420x",
     players: 892,
@@ -133,7 +132,7 @@ games = [
     title: "WHEEL",
     subtitle: "Spin to Fortune",
     image: "🎡",
-    href: "/game/wheel",
+    href: "/games/twist",
     gradient: "linear-gradient(135deg, #2d5f8a 0%, #00697a 100%)",
     multiplier: "175x",
     players: 654,
@@ -144,7 +143,7 @@ games = [
     title: "MINES",
     subtitle: "Find the Gems",
     image: "💎",
-    href: "/game/mines",
+    href: "/games/mine",
     gradient: "linear-gradient(135deg, #247a45 0%, #1f7c6b 100%)",
     multiplier: "24x",
     players: 432,
@@ -154,7 +153,7 @@ games = [
     title: "DICE",
     subtitle: "Roll Your Luck",
     image: "🎲",
-    href: "/game/dice",
+    href: "/games/dice",
     gradient: "linear-gradient(135deg, #8a3d52 0%, #8a6b20 100%)",
     multiplier: "98x",
     players: 756,
@@ -165,7 +164,7 @@ games = [
     title: "BLACKJACK",
     subtitle: "Beat the Dealer",
     image: "🃏",
-    href: "/game/blackjack",
+    href: "/games/blackjack",
     gradient: "linear-gradient(135deg, #1a6b6d 0%, #1a0438 100%)",
     multiplier: "21x",
     players: 923,
@@ -176,7 +175,7 @@ games = [
     title: "ROULETTE",
     subtitle: "European Classic",
     image: "🎰",
-    href: "/game/roulette",
+    href: "/games/roulette",
     gradient: "linear-gradient(135deg, #5a7a78 0%, #8a6b7a 100%)",
     multiplier: "35x",
     players: 567,
@@ -186,7 +185,7 @@ games = [
     title: "SLOTS",
     subtitle: "Mega Jackpot",
     image: "🎰",
-    href: "/game/slots",
+    href: "/games/slots",
     gradient: "linear-gradient(135deg, #8a4d52 0%, #8a6b7f 100%)",
     multiplier: "5000x",
     players: 2134,
@@ -194,15 +193,11 @@ games = [
   },
 ];
 
-
 export default function Games() {
   return (
     <div className={styles.cardContainer}>
       {games.map((game, idx) => (
-        <div
-          key={`${game.id}-${idx}`}
-          className={`${styles.card} `}
-        >
+        <div key={`${game.id}-${idx}`} className={`${styles.card} `}>
           <div
             className={styles.cardInner}
             style={{ background: game.gradient }}
@@ -237,7 +232,9 @@ export default function Games() {
                 </div>
               </div>
 
-              <Link href={game.href} className={styles.playBtn}>PLAY NOW</Link>
+              <Link href={game.href} className={styles.playBtn}>
+                PLAY NOW
+              </Link>
             </div>
 
             <div className={styles.cardGlow}></div>

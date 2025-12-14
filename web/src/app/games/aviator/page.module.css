@@ -603,6 +603,9 @@
     min-height: 250px;
     margin-bottom: 12px;
   }
+  .canvas {
+    height: 240px;
+  }
 
   .multiplierText {
     font-size: 48px;

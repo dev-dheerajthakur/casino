@@ -1,0 +1,31 @@
+.canvas {
+  position: relative;
+  height: 260px;
+  background: radial-gradient(circle at bottom, #1f2937, #020617);
+  overflow: hidden;
+  margin: 12px;
+  border-radius: 12px;
+}
+
+.multiplier {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 52px;
+  font-weight: 800;
+}
+
+.plane {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 32px;
+  animation: fly 4s linear infinite;
+}
+
+@keyframes fly {
+  to {
+    transform: translate(280px, -160px);
+  }
+}

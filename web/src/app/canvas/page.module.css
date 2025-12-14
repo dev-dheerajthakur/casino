@@ -1,0 +1,42 @@
+.canvas {
+  height: 400px;
+  width: 600px;
+  background: rgb(255, 255, 255);
+  /* margin: 200px 700px; */
+}
+
+
+
+
+
+
+
+
+/* 
+    ctx.beginPath();
+    ctx.moveTo(10, 390);
+    ctx?.quadraticCurveTo(300, 350, 450, 100);
+    ctx.lineTo(450, 390);
+    // ctx.lineTo(0, 200);
+    ctx.closePath();
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, 100);
+    gradient.addColorStop(0, "rgba(220, 38, 38, 0.8)");
+    gradient.addColorStop(1, "rgba(220, 38, 38, 0)");
+
+    ctx.fillStyle = gradient;
+    ctx.fill();
+
+    // ctx.beginPath();
+    // ctx.moveTo(10, 390);
+    // ctx?.quadraticCurveTo(300, 350, 450, 100);
+    // ctx.lineTo(200, 100);
+
+    // ctx.beginPath();
+    // ctx.moveTo(points[0][0], points[0][1]);
+    // for (let i = 1; i < points.length; i++) {
+    //   ctx.lineTo(points[i][0], points[i][1]);
+    // }
+    ctx.strokeStyle = "#000000ff";
+    ctx.lineWidth = 2;
+    ctx.stroke(); */

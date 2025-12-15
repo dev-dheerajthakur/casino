@@ -306,7 +306,7 @@ export default function CrashGame() {
               <div className={styles.chatHeader}>💬 Chat</div>
               <div className={styles.chatMessages}>
                 <div className={styles.chatMessage}>
-                  <img src="/api/placeholder/32/32" alt="" className={styles.avatar} />
+                  <img src="/png/aviator.png" alt="" className={styles.avatar} />
                   <div>
                     <div className={styles.chatUser}>p***7 • 5s</div>
                     <div className={styles.chatText}>gg!</div>

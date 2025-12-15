@@ -27,10 +27,9 @@
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  background-image: url('/icons/bg-rotate-old.svg');
-  background-size: cover;
-  background-position: 0%;
-  /* background-image: image-set(); */
+  background-image: url("/icons/bg-rotate-old.svg");
+  background-size: 2500px;
+  background-position: -1250px -720px;
   margin-bottom: 30px;
 }
 
@@ -67,6 +66,8 @@
     height: 50vh;
     min-height: 250px;
     margin-bottom: 20px;
+    background-size: 1000px;
+    background-position: -500px -250px;
   }
 
   .buttonGroup {

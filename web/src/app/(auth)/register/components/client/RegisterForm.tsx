@@ -1,14 +1,20 @@
 // app/register/page.tsx
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
-import styles from './../../../styles/form.module.css'
+import { FormEvent, useActionState, useEffect, useMemo, useState } from "react";
+import styles from "./../../../styles/form.module.css";
 import { Eye, EyeClosed } from "lucide-react";
+import { useFormState, useFormStatus } from "react-dom";
+import SubmitButton from "./SubmitButton";
+
+interface Props {
+  onSubmit: (state: any, formData: FormData) => void;
+}
 
 const APP_NAME = "Edge of War Casino"; // change to your brand
 const ISSUER = "EdgeOfWar"; // issuer for Google Authenticator
 
-export default function RegisterForm() {
+export default function RegisterForm({ onSubmit }: Props) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [countryCode, setCountryCode] = useState("+91");
@@ -16,6 +22,12 @@ export default function RegisterForm() {
   const [password, setPassword] = useState("");
   const [twoFASecret, setTwoFASecret] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [state, formAction, isPending] = useActionState(onSubmit, undefined);
+
+  useEffect(() => {
+    console.log("Form action state changed:", state);
+  }, [state])
+  
 
   // In real app, this secret must come from your backend (and stored there)!
   const generateFakeSecret = () => {
@@ -74,7 +86,7 @@ export default function RegisterForm() {
           Join {APP_NAME} and secure your account with 2FA.
         </p>
 
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} action={formAction}>
           {/* Full Name */}
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="fullName">
@@ -82,10 +94,11 @@ export default function RegisterForm() {
             </label>
             <input
               id="fullName"
+              name="fullName"
               className={styles.input}
               type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              // value={fullName}
+              // onChange={(e) => setFullName(e.target.value)}
               placeholder="Enter your full name"
               required
             />
@@ -100,8 +113,9 @@ export default function RegisterForm() {
               id="email"
               className={styles.input}
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              // value={email}
+              // onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               required
             />
@@ -113,8 +127,9 @@ export default function RegisterForm() {
             <div className={styles.phoneRow}>
               <select
                 className={styles.countryCode}
-                value={countryCode}
-                onChange={(e) => setCountryCode(e.target.value)}
+                name="countryCode"
+                // value={countryCode}
+                // onChange={(e) => setCountryCode(e.target.value)}
               >
                 <option value="+91">🇮🇳 +91</option>
                 <option value="+1">🇺🇸 +1</option>
@@ -125,8 +140,9 @@ export default function RegisterForm() {
               <input
                 className={styles.input}
                 type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                name="tel"
+                // value={phone}
+                // onChange={(e) => setPhone(e.target.value)}
                 placeholder="9876543210"
                 required
               />
@@ -143,8 +159,8 @@ export default function RegisterForm() {
                 id="password"
                 className={styles.input}
                 type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                // value={password}
+                // onChange={(e) => setPassword(e.target.value)}
                 placeholder="Create a strong password"
                 required
                 minLength={6}
@@ -218,9 +234,15 @@ export default function RegisterForm() {
           </div>
 
           {/* Submit */}
-          <button type="submit" className={styles.primaryButton}>
-            Create Account
+          <button
+            type="submit"
+            className={styles.primaryButton}
+            style={{ opacity: isPending ? 0.2 : 1 }}
+            disabled={isPending}
+          >
+            Create Account df
           </button>
+          {/* <SubmitButton /> */}
 
           <p className={styles.footerText}>
             Already have an account?{" "}

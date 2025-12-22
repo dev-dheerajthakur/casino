@@ -1,15 +1,21 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./page.module.css";
+import styles from "./styles/animated-multiplier.module.css";
 import { Button } from "@mui/material";
+
+interface Props {
+  animation?: boolean;
+}
 
 function quadraticAt(p0: number, p1: number, p2: number, t: number) {
   return (1 - t) * (1 - t) * p0 + 2 * (1 - t) * t * p1 + t * t * p2;
 }
 
-export default function Page() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+export default function AnimatedMultiplier({ animation }: Props) {
+  const [multiplier, setMultiplier] = useState(0.0);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   const DRAW_DURATION = 5_000;
@@ -17,6 +23,8 @@ export default function Page() {
   const Y_AMPLITUDE = 30;
   const X_AMPLITUDE = 20;
   const RESOLUTION = 1000;
+  const MULTIPLIER_RATE = 0.00025; // tweak for speed
+  const MAX_MULTIPLIER = 1000;
 
   const animationFrameId = useRef<number | null>(null);
   const startTime = useRef<number>(0);
@@ -28,9 +36,9 @@ export default function Page() {
   const getScaledPoints = (width: number, height: number) => {
     // const scaleX = width / 460;
     const scaleY = height / 400;
-    
+
     return {
-      start: { x: 10, y: height - 10 * scaleY },
+      start: { x: 0, y: height - 0 * scaleY },
       baseControl: { x: width / 2, y: height - 100 * scaleY },
       baseEnd: { x: width * 0.75, y: 100 * scaleY },
     };
@@ -140,14 +148,19 @@ export default function Page() {
     ctx.lineWidth = Math.max(2, dimensions.width / 150);
     ctx.stroke();
 
-
     // image at tip
     const img = tipImage.current;
     if (img && img.complete) {
       const scale = Math.min(dimensions.width / 460, dimensions.height / 400);
       const imgWidth = 90 * scale;
       const imgHeight = 50 * scale;
-      ctx.drawImage(img, tip.x - imgWidth / 7, tip.y - imgHeight + 5, imgWidth, imgHeight);
+      ctx.drawImage(
+        img,
+        tip.x - imgWidth / 7,
+        tip.y - imgHeight + 2,
+        imgWidth,
+        imgHeight
+      );
     }
   }
 
@@ -159,7 +172,10 @@ export default function Page() {
     if (!ctx) return;
 
     const progress = 0;
-    const { start, baseControl, baseEnd } = getScaledPoints(dimensions.width, dimensions.height);
+    const { start, baseControl, baseEnd } = getScaledPoints(
+      dimensions.width,
+      dimensions.height
+    );
 
     const tip = {
       x: start.x,
@@ -179,9 +195,41 @@ export default function Page() {
     if (!ctx) return;
 
     const elapsed = now - startTime.current + pausedElapsed.current;
+
+    // Aviator-style multiplier growth
+    // const nextMultiplier = Math.min(
+    //   0.01 + elapsed * MULTIPLIER_RATE,
+    //   MAX_MULTIPLIER
+    // );
+    // const START_MULTIPLIER = 0.01;
+
+    // const nextMultiplier = Math.min(
+    //   START_MULTIPLIER + (Math.exp(elapsed * MULTIPLIER_RATE) - 1),
+    //   MAX_MULTIPLIER
+    // );
+
+    const START_MULTIPLIER = 0.01;
+    const MAX_MULTIPLIER = 1000;
+
+    // tuning knobs
+    const GROWTH_RATE = 0.00028; // speed
+    const CURVE_SOFTNESS = 600; // higher = smoother later
+
+    const t = elapsed * GROWTH_RATE;
+
+    const nextMultiplier = Math.min(
+      START_MULTIPLIER + (Math.exp(t) - 1) / (1 + Math.exp(t) / CURVE_SOFTNESS),
+      MAX_MULTIPLIER
+    );
+
+    setMultiplier(nextMultiplier);
+
     const progress = Math.min(elapsed / DRAW_DURATION, 1);
 
-    const { start, baseControl, baseEnd } = getScaledPoints(dimensions.width, dimensions.height);
+    const { start, baseControl, baseEnd } = getScaledPoints(
+      dimensions.width,
+      dimensions.height
+    );
     const scale = Math.min(dimensions.width / 460, dimensions.height / 400);
 
     let xOffset = 0;
@@ -216,6 +264,7 @@ export default function Page() {
   function startAnimation() {
     if (running.current) return;
 
+    // setMultiplier(1.0); // reset
     running.current = true;
     startTime.current = performance.now();
     animationFrameId.current = requestAnimationFrame(loop);
@@ -236,34 +285,54 @@ export default function Page() {
 
   function clearCanvas() {
     stopAnimation();
+    setMultiplier(0.0); // reset
     pausedElapsed.current = 0;
     drawInitialFrame();
   }
 
   function restartAnimation() {
+    setMultiplier(0.0); // reset
     pausedElapsed.current = 0;
     startAnimation();
   }
 
   return (
-    <div className={styles.pageContainer}>
-      <h1 className={styles.title}>Canvas Animation</h1>
-      
+    <div className={styles.container}>
       <div ref={containerRef} className={styles.canvasContainer}>
         <canvas ref={canvasRef} className={styles.canvas} />
+        <div className={styles.multiplier}>{multiplier.toFixed(2)} x</div>
       </div>
-
       <div className={styles.buttonGroup}>
-        <Button onClick={startAnimation} variant="contained" color="success" className={styles.button}>
+        <Button
+          onClick={startAnimation}
+          variant="contained"
+          color="success"
+          className={styles.button}
+        >
           Start
         </Button>
-        <Button onClick={stopAnimation} variant="contained" color="secondary" className={styles.button}>
+        <Button
+          onClick={stopAnimation}
+          variant="contained"
+          color="secondary"
+          className={styles.button}
+        >
           Stop
         </Button>
-        <Button onClick={restartAnimation} variant="contained" color="warning" className={styles.button}>
+        <Button
+          onClick={restartAnimation}
+          variant="contained"
+          color="warning"
+          className={styles.button}
+        >
           Restart
         </Button>
-        <Button onClick={clearCanvas} variant="contained" color="error" className={styles.button}>
+        <Button
+          onClick={clearCanvas}
+          variant="contained"
+          color="error"
+          className={styles.button}
+        >
           Clear
         </Button>
       </div>

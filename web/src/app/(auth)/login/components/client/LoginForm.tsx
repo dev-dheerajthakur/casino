@@ -9,8 +9,11 @@ import { useToast } from "@/components/toast/ToastProvider";
 const APP_NAME = "Edge of War Casino"; // change if needed
 
 type LoginMode = "email" | "phone";
+type Props = {
+  onSubmit?: (e: FormEvent) => void;
+}
 
-export default function LoginForm() {
+export default function LoginForm({ onSubmit }: Props) {
   const { showToast } = useToast();
   const [loginMode, setLoginMode] = useState<LoginMode>("email");
   const [email, setEmail] = useState("");

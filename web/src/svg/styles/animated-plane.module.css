@@ -1,0 +1,32 @@
+
+.topPropeller {
+  transform-origin: 133px 20px;
+  animation: propellerTop 0.8s ease-in-out infinite alternate;
+}
+
+.bottomPropeller {
+  transform-origin: 138px 33.2px;
+  animation: propellerBottom 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes propellerTop {
+  0% {
+    transform: scaleY(0.6);
+    /* opacity: 0.6; */
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes propellerBottom {
+  0% {
+    transform: scaleY(0.5);
+    /* opacity: 0.6; */
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}

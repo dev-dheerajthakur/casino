@@ -1,7 +1,244 @@
+.header {
+  background: #1a1a1a;
+  border-bottom: 1px solid #2a2a2a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
 .container {
+  /* max-width: 2400px; */
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 56px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  background-color: #1a1a1a;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  background: linear-gradient(135deg, #ff0080 0%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 24px;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Right Section */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Balance */
+.balance {
+  background: #0a0a0a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.balance:hover {
+  background: #141414;
+  border-color: #3a3a3a;
+}
+
+.balanceAmount {
+  color: #4ade80;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Buttons */
+.menuButton,
+.userButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  background: #0a0a0a;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menuButton:hover,
+.userButton:hover {
+  background: #141414;
+  border-color: #3a3a3a;
+  color: #fff;
+}
+
+.menuButton:active,
+.userButton:active {
+  transform: scale(0.95);
+}
+
+/* Menu Overlay */
+.menuOverlay {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.menuContent {
+  background: #1a1a1a;
+  border-radius: 0 0 12px 12px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.menuItem {
+  padding: 12px 16px;
+  color: #aaa;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menuItem:hover {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+    height: 52px;
+  }
+
+  .logoText {
+    font-size: 20px;
+  }
+
+  .balance {
+    padding: 6px 12px;
+  }
+
+  .balanceAmount {
+    font-size: 13px;
+  }
+
+  .menuButton,
+  .userButton {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+    height: 48px;
+  }
+
+  .logoText {
+    font-size: 18px;
+  }
+
+  .rightSection {
+    gap: 8px;
+  }
+
+  .balance {
+    padding: 6px 10px;
+  }
+
+  .balanceAmount {
+    font-size: 12px;
+  }
+
+  .menuButton,
+  .userButton {
+    width: 34px;
+    height: 34px;
+  }
+
+  .menuButton svg,
+  .userButton svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .logoText {
+    font-size: 16px;
+  }
+
+  .rightSection {
+    gap: 6px;
+  }
+
+  .balance {
+    padding: 5px 8px;
+  }
+
+  .balanceAmount {
+    font-size: 11px;
+  }
+
+  .menuButton,
+  .userButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .menuButton svg,
+  .userButton svg {
+    width: 16px;
+    height: 16px;
+  }
 }

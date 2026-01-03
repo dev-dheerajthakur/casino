@@ -132,7 +132,7 @@ export enum CurrencyType {
 }
 
 @Entity('users')
-export class User {
+export class Users {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

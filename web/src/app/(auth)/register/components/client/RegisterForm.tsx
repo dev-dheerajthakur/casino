@@ -89,17 +89,17 @@ export default function RegisterForm({ onSubmit }: Props) {
         <form className={styles.form} action={formAction}>
           {/* Full Name */}
           <div className={styles.formGroup}>
-            <label className={styles.label} htmlFor="fullName">
-              Full Name
+            <label className={styles.label} htmlFor="username">
+              username
             </label>
             <input
-              id="fullName"
-              name="fullName"
+              id="username"
+              name="username"
               className={styles.input}
               type="text"
               // value={fullName}
               // onChange={(e) => setFullName(e.target.value)}
-              placeholder="Enter your full name"
+              placeholder="Enter your username"
               required
             />
           </div>
@@ -165,7 +165,7 @@ export default function RegisterForm({ onSubmit }: Props) {
                 required
                 minLength={6}
                 autoComplete="new-password"
-                name="new-password"
+                name="password"
               />
               <button
                 type="button"

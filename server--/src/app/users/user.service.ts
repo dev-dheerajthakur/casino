@@ -67,7 +67,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, IsNull } from 'typeorm';
-import { User, UserRole, AccountStatus, CurrencyType } from './user.entity';
+import { Users, UserRole, AccountStatus, CurrencyType } from './user.entity';
 import {
   CreateUserDto,
   UpdateUserDto,
@@ -77,12 +77,12 @@ import {
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectRepository(Users)
+    private readonly userRepository: Repository<Users>,
   ) {}
 
   // Create & Registration
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<Users> {
     // Check if email or username already exists
     const existingUserByEmail = await this.userRepository.findOne({
       where: { email: createUserDto.email, deletedAt: IsNull() },
@@ -114,11 +114,13 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
+  async login() {}
+
   // Read Operations
   async findAll(
     page: number = 1,
     limit: number = 10,
-  ): Promise<{ users: User[]; total: number }> {
+  ): Promise<{ users: Users[]; total: number }> {
     const [users, total] = await this.userRepository.findAndCount({
       where: { deletedAt: IsNull() },
       skip: (page - 1) * limit,
@@ -129,7 +131,7 @@ export class UserService {
     return { users, total };
   }
 
-  async findById(id: string): Promise<User> {
+  async findById(id: string): Promise<Users> {
     const user = await this.userRepository.findOne({
       where: { id, deletedAt: IsNull() },
     });
@@ -141,7 +143,7 @@ export class UserService {
     return user;
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<Users> {
     const user = await this.userRepository
       .createQueryBuilder('user')
       .where('user.email = :email', { email })
@@ -156,7 +158,7 @@ export class UserService {
     return user;
   }
 
-  async findByUsername(username: string): Promise<User> {
+  async findByUsername(username: string): Promise<Users> {
     const user = await this.userRepository.findOne({
       where: { username, deletedAt: IsNull() },
     });
@@ -168,14 +170,14 @@ export class UserService {
     return user;
   }
 
-  async findByReferralCode(referralCode: string): Promise<User | null> {
+  async findByReferralCode(referralCode: string): Promise<Users | null> {
     return await this.userRepository.findOne({
       where: { referralCode, deletedAt: IsNull() },
     });
   }
 
   // Update Operations
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<Users> {
     const user = await this.findById(id);
     Object.assign(user, updateUserDto);
     return await this.userRepository.save(user);
@@ -187,20 +189,20 @@ export class UserService {
     await this.userRepository.save(user);
   }
 
-  async updateRole(id: string, role: UserRole): Promise<User> {
+  async updateRole(id: string, role: UserRole): Promise<Users> {
     const user = await this.findById(id);
     user.role = role;
     return await this.userRepository.save(user);
   }
 
-  async updateStatus(id: string, status: AccountStatus): Promise<User> {
+  async updateStatus(id: string, status: AccountStatus): Promise<Users> {
     const user = await this.findById(id);
     user.status = status;
     return await this.userRepository.save(user);
   }
 
   // Verification
-  async verifyEmail(id: string): Promise<User> {
+  async verifyEmail(id: string): Promise<Users> {
     const user = await this.findById(id);
     user.isEmailVerified = true;
 
@@ -211,13 +213,13 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async verifyPhone(id: string): Promise<User> {
+  async verifyPhone(id: string): Promise<Users> {
     const user = await this.findById(id);
     user.isPhoneVerified = true;
     return await this.userRepository.save(user);
   }
 
-  async verifyKyc(id: string): Promise<User> {
+  async verifyKyc(id: string): Promise<Users> {
     const user = await this.findById(id);
     user.isKycVerified = true;
     return await this.userRepository.save(user);
@@ -235,7 +237,7 @@ export class UserService {
     };
   }
 
-  async deposit(id: string, amount: number): Promise<User> {
+  async deposit(id: string, amount: number): Promise<Users> {
     if (amount <= 0) {
       throw new BadRequestException('Deposit amount must be positive');
     }
@@ -250,7 +252,7 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async withdraw(id: string, amount: number): Promise<User> {
+  async withdraw(id: string, amount: number): Promise<Users> {
     if (amount <= 0) {
       throw new BadRequestException('Withdrawal amount must be positive');
     }
@@ -271,13 +273,13 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async addBonus(id: string, amount: number): Promise<User> {
+  async addBonus(id: string, amount: number): Promise<Users> {
     const user = await this.findById(id);
     user.updateBonusBalance(amount);
     return await this.userRepository.save(user);
   }
 
-  async processWager(id: string, amount: number): Promise<User> {
+  async processWager(id: string, amount: number): Promise<Users> {
     if (amount <= 0) {
       throw new BadRequestException('Wager amount must be positive');
     }
@@ -305,13 +307,13 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async processWin(id: string, amount: number): Promise<User> {
+  async processWin(id: string, amount: number): Promise<Users> {
     const user = await this.findById(id);
     user.recordWin(amount);
     return await this.userRepository.save(user);
   }
 
-  async processLoss(id: string, amount: number): Promise<User> {
+  async processLoss(id: string, amount: number): Promise<Users> {
     const user = await this.findById(id);
     user.recordLoss(amount);
     return await this.userRepository.save(user);
@@ -321,7 +323,7 @@ export class UserService {
   async updateDepositLimits(
     id: string,
     limits: UpdateDepositLimitsDto,
-  ): Promise<User> {
+  ): Promise<Users> {
     const user = await this.findById(id);
 
     if (limits.dailyDepositLimit !== undefined) {
@@ -337,7 +339,7 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async selfExclude(id: string, durationInDays: number): Promise<User> {
+  async selfExclude(id: string, durationInDays: number): Promise<Users> {
     const user = await this.findById(id);
     user.selfExcluded = true;
     user.selfExclusionUntil = new Date(
@@ -347,7 +349,7 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async removeSelfExclusion(id: string): Promise<User> {
+  async removeSelfExclusion(id: string): Promise<Users> {
     const user = await this.findById(id);
 
     if (user.selfExclusionUntil && new Date() < user.selfExclusionUntil) {
@@ -370,7 +372,7 @@ export class UserService {
     await this.userRepository.save(user);
   }
 
-  async recordLogin(id: string, ip: string): Promise<User> {
+  async recordLogin(id: string, ip: string): Promise<Users> {
     const user = await this.findById(id);
     user.updateLastLogin(ip);
     user.resetFailedLogin();
@@ -393,20 +395,20 @@ export class UserService {
     return user.isAccountLocked();
   }
 
-  async unlockAccount(id: string): Promise<User> {
+  async unlockAccount(id: string): Promise<Users> {
     const user = await this.findById(id);
     user.resetFailedLogin();
     return await this.userRepository.save(user);
   }
 
-  async enable2FA(id: string, secret: string): Promise<User> {
+  async enable2FA(id: string, secret: string): Promise<Users> {
     const user = await this.findById(id);
     user.twoFactorSecret = secret;
     user.twoFactorEnabled = true;
     return await this.userRepository.save(user);
   }
 
-  async disable2FA(id: string): Promise<User> {
+  async disable2FA(id: string): Promise<Users> {
     const user = await this.findById(id);
     user.twoFactorSecret = undefined;
     user.twoFactorEnabled = false;
@@ -446,7 +448,7 @@ export class UserService {
     };
   }
 
-  async getTopPlayers(limit: number = 10): Promise<User[]> {
+  async getTopPlayers(limit: number = 10): Promise<Users[]> {
     return await this.userRepository.find({
       where: { deletedAt: IsNull() },
       order: { totalWon: 'DESC' },
@@ -470,7 +472,7 @@ export class UserService {
     await this.userRepository.save(user);
   }
 
-  async restore(id: string): Promise<User> {
+  async restore(id: string): Promise<Users> {
     const user = await this.userRepository.findOne({
       where: { id },
     });

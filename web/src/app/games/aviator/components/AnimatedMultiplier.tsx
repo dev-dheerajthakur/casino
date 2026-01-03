@@ -302,7 +302,7 @@ export default function AnimatedMultiplier({ animation }: Props) {
         <canvas ref={canvasRef} className={styles.canvas} />
         <div className={styles.multiplier}>{multiplier.toFixed(2)} x</div>
       </div>
-      <div className={styles.buttonGroup}>
+      {/* <div className={styles.buttonGroup}>
         <Button
           onClick={startAnimation}
           variant="contained"
@@ -335,7 +335,7 @@ export default function AnimatedMultiplier({ animation }: Props) {
         >
           Clear
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }

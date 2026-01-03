@@ -1,0 +1,37 @@
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.multiplier {
+  border-radius: 20px;
+  overflow: hidden;
+}
+@media (max-width: 760px) {
+  .betButton {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+  }
+  .container, .multiplier {
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 760px) {
+  .container {
+    padding: 20px;
+  }
+  .multiplier {
+    flex: 1;
+    background: teal;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .betButton {
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}

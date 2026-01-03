@@ -1,0 +1,281 @@
+.container {
+  background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+  border-radius: 16px;
+  padding: 26px;
+  /* max-width: 500px; */
+  /* margin: 0 auto; */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  background: #0a0a0a;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.tab {
+  flex: 1;
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  color: #888;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  color: #aaa;
+}
+
+.tab.active {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+/* Left Section */
+.leftSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Amount Section */
+.amountSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.adjustButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #2a2a2a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.adjustButton:hover {
+  background: #3a3a3a;
+  transform: scale(1.05);
+}
+
+.adjustButton:active {
+  transform: scale(0.95);
+}
+
+.adjustButton svg {
+  width: 14px;
+  height: 14px;
+}
+
+.amountDisplay {
+  min-width: 64px;
+  text-align: center;
+}
+
+.amount {
+  font-size: 19px;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+}
+
+/* Quick Amounts */
+.quickAmounts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.quickButton {
+  padding: 10px;
+  border: none;
+  background: #2a2a2a;
+  color: #aaa;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quickButton:hover {
+  background: #3a3a3a;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.quickButton:active {
+  transform: translateY(0);
+}
+
+/* Bet Button */
+.betButton {
+  width: 200px;
+  height: 80px;
+  padding: 0;
+  border: none;
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 4px 16px rgba(74, 222, 128, 0.3);
+  flex-shrink: 0;
+  margin-top: 10px;
+}
+
+.betButton:hover {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(74, 222, 128, 0.4);
+}
+
+.betButton:active {
+  transform: translateY(0);
+}
+
+.betText {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.betValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .container {
+    padding: 19px;
+    border-radius: 10px;
+  }
+
+  .tabs {
+    padding: 4px;
+    gap: 5px;
+    margin-bottom: 16px;
+  }
+
+  .tab {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .controls {
+    gap: 10px;
+  }
+
+  .betButton {
+    width: 160px;
+    height: 64px;
+  }
+
+  .amount {
+    font-size: 18px;
+  }
+
+  .adjustButton {
+    width: 29px;
+    height: 29px;
+  }
+
+  .adjustButton svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .amountDisplay {
+    min-width: 56px;
+  }
+
+  .quickButton {
+    /* padding: 8px 6px; */
+    font-size: 11px;
+  }
+
+  .betText {
+    font-size: 12px;
+  }
+
+  .betValue {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 16px;
+  }
+
+  .tabs {
+    padding: 2px 6px;
+    gap: 5px;
+  }
+
+  .tab {
+    padding: 6px 13px;
+    font-size: 11px;
+  }
+
+  .betButton {
+    width: 112px;
+    height: 56px;
+  }
+
+  .amount {
+    font-size: 16px;
+  }
+  
+  .adjustButton {
+    width: 27px;
+    height: 27px;
+  }
+
+  .adjustButton svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .amountDisplay {
+    min-width: 48px;
+  }
+
+  .betText {
+    font-size: 11px;
+  }
+
+  .betValue {
+    font-size: 13px;
+  }
+}

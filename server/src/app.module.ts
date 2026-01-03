@@ -1,36 +1,37 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user/user.entity';
-import { CrashModule } from './crash/crash.module';
-import { RateLimiterMiddleware } from './common/middleware/rate-limiter.middleware';
+import { ConfigModule } from '@nestjs/config';
+import { typeOrmConfig } from 'typeorm.config';
+import { UsersModule } from './users/users.module';
+import { JwtModule } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthorizationGuard } from './common/guards/AuthorizationGuard.guard';
 
 @Module({
   imports: [
-    UserModule,
-    CrashModule,
     TypeOrmModule.forRootAsync({
+      useFactory: typeOrmConfig,
+    }),
+    ConfigModule.forRoot({
+      envFilePath: '.env.local',
+      isGlobal: true,
+    }),
+    JwtModule.registerAsync({
       useFactory: () => ({
-        type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: 'postgres', // <- change
-        password: 'postgree2025', // <- change
-        database: 'casino', // <- change
-        entities: [User], // or [__dirname + '/**/*.entity{.ts,.js}']
-        synchronize: true, // auto-sync schema (use false in production)
+        secret: process.env.JWT_SECRET,
       }),
     }),
-    TypeOrmModule.forFeature([User]),
-    CrashModule,
+    UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthorizationGuard,
+    },
+  ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RateLimiterMiddleware).forRoutes('*');
-  }
-}
+export class AppModule {}

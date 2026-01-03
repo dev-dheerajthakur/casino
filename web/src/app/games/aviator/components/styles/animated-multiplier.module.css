@@ -1,7 +1,8 @@
 .container {
-  height: 300px;
-  padding: 20px;
+  /* height: 300px; */
   background: rgb(14, 17, 20);
+  display: flex;
+  justify-content: center;
 }
 
 .pageContainer {
@@ -9,14 +10,14 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .title {
   color: white;
   font-size: clamp(24px, 5vw, 48px);
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   text-align: center;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -36,7 +37,7 @@
   background-image: url("/icons/bg-rotate-old.svg");
   background-size: 2500px;
   background-position: -1250px -720px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .multiplier {
@@ -51,10 +52,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: "Inter var", system-ui, sans-serif;
+  font-weight: 1000;
 
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 100px;
   color: #fcfcfc;
+  /* font-weight: 900; */
 
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
@@ -69,9 +73,9 @@
   ); */
   box-shadow: 0 0 100px 30px rgb(102, 51, 153);
 }
-.multiplier {
+/* .multiplier {
   font-size: clamp(2rem, 5vw, 3rem);
-}
+} */
 
 .canvas {
   display: block;
@@ -98,14 +102,11 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-  .pageContainer {
-    padding: 15px;
-  }
 
   .canvasContainer {
     height: 50vh;
     min-height: 250px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     background-size: 1000px;
     background-position: -500px -250px;
   }
@@ -121,9 +122,6 @@
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 5px;
-  }
   .pageContainer {
     padding: 10px;
   }

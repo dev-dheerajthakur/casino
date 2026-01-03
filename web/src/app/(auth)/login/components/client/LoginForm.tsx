@@ -1,7 +1,7 @@
 // app/login/page.tsx
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useActionState, useState } from "react";
 import styles from "./../../../styles/form.module.css";
 import { ClipboardPaste, Eye, EyeClosed } from "lucide-react";
 import { useToast } from "@/components/toast/ToastProvider";
@@ -10,8 +10,8 @@ const APP_NAME = "Edge of War Casino"; // change if needed
 
 type LoginMode = "email" | "phone";
 type Props = {
-  onSubmit?: (e: FormEvent) => void;
-}
+  onSubmit: (state: unknown, formData: FormData) => void;
+};
 
 export default function LoginForm({ onSubmit }: Props) {
   const { showToast } = useToast();
@@ -22,6 +22,7 @@ export default function LoginForm({ onSubmit }: Props) {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [authCode, setAuthCode] = useState("");
+  const [state, formAction, isPending] = useActionState(onSubmit, undefined);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -68,7 +69,7 @@ export default function LoginForm({ onSubmit }: Props) {
           Log in to continue playing on {APP_NAME}.
         </p>
 
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} action={formAction}>
           {/* Login mode switch */}
           <div className={styles.formGroup}>
             <span className={styles.label}>Login with</span>
@@ -100,16 +101,17 @@ export default function LoginForm({ onSubmit }: Props) {
           {/* Email OR Phone */}
           {loginMode === "email" ? (
             <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="email">
+              <label className={styles.label} htmlFor="emailOrUsername">
                 Email
               </label>
               <input
                 id="email"
+                name="emailOrUsername"
                 className={styles.input}
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
+                type="text"
+                // value={email}
+                // onChange={(e) => setEmail(e.target.value)}
+                placeholder="email or username"
                 required
                 autoComplete="email"
               />
@@ -120,8 +122,9 @@ export default function LoginForm({ onSubmit }: Props) {
               <div className={styles.phoneRow}>
                 <select
                   className={styles.countryCode}
-                  value={countryCode}
-                  onChange={(e) => setCountryCode(e.target.value)}
+                  name="countryCode"
+                  // value={countryCode}
+                  // onChange={(e) => setCountryCode(e.target.value)}
                 >
                   <option value="+91">🇮🇳 +91</option>
                   <option value="+1">🇺🇸 +1</option>
@@ -132,8 +135,9 @@ export default function LoginForm({ onSubmit }: Props) {
                 <input
                   className={styles.input}
                   type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  name="tel"
+                  // value={phone}
+                  // onChange={(e) => setPhone(e.target.value)}
                   placeholder="9876543210"
                   required
                   autoComplete="tel"
@@ -153,8 +157,8 @@ export default function LoginForm({ onSubmit }: Props) {
                 name="password"
                 className={styles.input}
                 type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                // value={password}
+                // onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 required
                 minLength={6}
@@ -179,13 +183,14 @@ export default function LoginForm({ onSubmit }: Props) {
             <div className={styles.authWrapper}>
               <input
                 id="authCode"
+                name="authCode"
                 className={styles.input}
                 type="text"
                 inputMode="numeric"
                 pattern="\d*"
                 maxLength={6}
-                value={authCode}
-                onChange={(e) => setAuthCode(e.target.value)}
+                // value={authCode}
+                // onChange={(e) => setAuthCode(e.target.value)}
                 placeholder="6-digit code"
               />
 
@@ -218,8 +223,13 @@ export default function LoginForm({ onSubmit }: Props) {
           </div>
 
           {/* Login button */}
-          <button type="submit" className={styles.primaryButton}>
-            Login
+          <button
+            type="submit"
+            className={styles.primaryButton}
+            disabled={isPending}
+            style={{ opacity: isPending ? 0.5 : 1 }}
+          >
+            Login jhg
           </button>
 
           {/* Links */}

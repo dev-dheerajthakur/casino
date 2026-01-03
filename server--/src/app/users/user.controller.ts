@@ -1,13 +1,12 @@
-
 /**
  * UserController - Handles all HTTP requests for user management in the casino platform
  * Base Route: /users
- * 
+ *
  * AUTHENTICATION & REGISTRATION:
  * POST   /users/register              - Register new user account
  * POST   /users/login                 - User login (handled by auth module typically)
  * POST   /users/logout                - User logout
- * 
+ *
  * USER PROFILE:
  * GET    /users                       - Get all users (paginated, admin only)
  * GET    /users/:id                   - Get user by ID
@@ -15,34 +14,34 @@
  * PUT    /users/:id                   - Update user profile
  * PATCH  /users/:id/password          - Change user password
  * DELETE /users/:id                   - Soft delete user account
- * 
+ *
  * VERIFICATION:
  * POST   /users/:id/verify-email      - Verify user email
  * POST   /users/:id/verify-phone      - Verify user phone number
  * POST   /users/:id/verify-kyc        - Verify user KYC documents
- * 
+ *
  * WALLET & BALANCE:
  * GET    /users/:id/balance           - Get user's balance information
  * POST   /users/:id/deposit           - Deposit funds to user account
  * POST   /users/:id/withdraw          - Withdraw funds from user account
  * POST   /users/:id/bonus             - Add bonus to user account (admin only)
- * 
+ *
  * GAMING:
  * POST   /users/:id/wager             - Process game wager
  * POST   /users/:id/game-result       - Process game result (win/loss)
  * GET    /users/:id/stats             - Get user gaming statistics
  * GET    /users/leaderboard/top       - Get top players leaderboard
- * 
+ *
  * RESPONSIBLE GAMING:
  * PUT    /users/:id/deposit-limits    - Update deposit limits
  * POST   /users/:id/self-exclude      - Self-exclude account
  * DELETE /users/:id/self-exclude      - Remove self-exclusion
- * 
+ *
  * SECURITY:
  * POST   /users/:id/2fa/enable        - Enable two-factor authentication
  * DELETE /users/:id/2fa/disable       - Disable two-factor authentication
  * POST   /users/:id/unlock            - Unlock locked account (admin only)
- * 
+ *
  * ADMIN OPERATIONS:
  * PATCH  /users/:id/role              - Update user role (admin only)
  * PATCH  /users/:id/status            - Update user status (admin only)
@@ -50,32 +49,14 @@
  * POST   /users/:id/restore           - Restore soft-deleted user (admin only)
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * UserController - Handles all HTTP requests for user management in the casino platform
  * Base Route: /users
- * 
+ *
  * ==================================================================================
  * AUTHENTICATION & REGISTRATION
  * ==================================================================================
- * 
+ *
  * POST /users/register - Register new user account
  * Body: {
  *   email: string (required),
@@ -89,32 +70,32 @@
  *   currency?: 'USD' | 'EUR' | 'GBP' | 'BTC' | 'ETH',
  *   referredBy?: string (referral code)
  * }
- * 
+ *
  * POST /users/login - User login (typically handled by auth module)
  * Body: {
  *   emailOrUsername: string (required),
  *   password: string (required),
  *   twoFactorCode?: string (if 2FA enabled)
  * }
- * 
+ *
  * POST /users/logout - User logout
  * Headers: { Authorization: 'Bearer <token>' }
- * 
+ *
  * ==================================================================================
  * USER PROFILE
  * ==================================================================================
- * 
+ *
  * GET /users - Get all users (paginated, admin only)
  * Headers: { Authorization: 'Bearer <token>' }
  * Query: { page?: number (default 1), limit?: number (default 10) }
- * 
+ *
  * GET /users/:id - Get user by ID
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
- * 
+ *
  * GET /users/profile/me - Get current user's profile
  * Headers: { Authorization: 'Bearer <token>' }
- * 
+ *
  * PUT /users/:id - Update user profile
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -128,7 +109,7 @@
  *   smsNotifications?: boolean,
  *   promotionalEmails?: boolean
  * }
- * 
+ *
  * PATCH /users/:id/password - Change user password
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -136,37 +117,37 @@
  *   currentPassword: string (required),
  *   newPassword: string (required, min 8 chars)
  * }
- * 
+ *
  * DELETE /users/:id - Soft delete user account
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
- * 
+ *
  * ==================================================================================
  * VERIFICATION
  * ==================================================================================
- * 
+ *
  * POST /users/:id/verify-email - Verify user email
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
  * Body: { token: string (verification token) }
- * 
+ *
  * POST /users/:id/verify-phone - Verify user phone number
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
  * Body: { otp: string (4-6 digit code) }
- * 
+ *
  * POST /users/:id/verify-kyc - Verify user KYC documents (admin only)
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
- * 
+ *
  * ==================================================================================
  * WALLET & BALANCE
  * ==================================================================================
- * 
+ *
  * GET /users/:id/balance - Get user's balance information
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
- * 
+ *
  * POST /users/:id/deposit - Deposit funds to user account
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -175,7 +156,7 @@
  *   paymentMethod?: string,
  *   transactionId?: string
  * }
- * 
+ *
  * POST /users/:id/withdraw - Withdraw funds from user account
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -184,7 +165,7 @@
  *   paymentMethod?: string,
  *   walletAddress?: string
  * }
- * 
+ *
  * POST /users/:id/bonus - Add bonus to user account (admin only)
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -193,11 +174,11 @@
  *   reason?: string,
  *   bonusCode?: string
  * }
- * 
+ *
  * ==================================================================================
  * GAMING
  * ==================================================================================
- * 
+ *
  * POST /users/:id/wager - Process game wager
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -206,7 +187,7 @@
  *   gameId: string (required),
  *   gameName?: string
  * }
- * 
+ *
  * POST /users/:id/game-result - Process game result (win/loss)
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -217,18 +198,18 @@
  *   isWin: boolean (required),
  *   gameType?: string
  * }
- * 
+ *
  * GET /users/:id/stats - Get user gaming statistics
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
- * 
+ *
  * GET /users/leaderboard/top - Get top players leaderboard
  * Query: { limit?: number (default 10, max 100) }
- * 
+ *
  * ==================================================================================
  * RESPONSIBLE GAMING
  * ==================================================================================
- * 
+ *
  * PUT /users/:id/deposit-limits - Update deposit limits
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -237,7 +218,7 @@
  *   weeklyDepositLimit?: number (min 0),
  *   monthlyDepositLimit?: number (min 0)
  * }
- * 
+ *
  * POST /users/:id/self-exclude - Self-exclude account
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -245,15 +226,15 @@
  *   durationInDays: number (required, min 1, max 365),
  *   reason?: string
  * }
- * 
+ *
  * DELETE /users/:id/self-exclude - Remove self-exclusion
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
- * 
+ *
  * ==================================================================================
  * SECURITY
  * ==================================================================================
- * 
+ *
  * POST /users/:id/2fa/enable - Enable two-factor authentication
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
@@ -261,60 +242,40 @@
  *   secret: string (required, 2FA secret),
  *   verificationCode: string (required, 6 digits)
  * }
- * 
+ *
  * DELETE /users/:id/2fa/disable - Disable two-factor authentication
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
  * Body: {
  *   verificationCode: string (required, 6 digits)
  * }
- * 
+ *
  * POST /users/:id/unlock - Unlock locked account (admin only)
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
- * 
+ *
  * ==================================================================================
  * ADMIN OPERATIONS
  * ==================================================================================
- * 
+ *
  * PATCH /users/:id/role - Update user role (admin only)
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
  * Body: { role: 'user' | 'vip' | 'admin' }
- * 
+ *
  * PATCH /users/:id/status - Update user status (admin only)
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
  * Body: { status: 'active' | 'suspended' | 'banned' | 'pending_verification' }
- * 
+ *
  * DELETE /users/:id/permanent - Permanently delete user (admin only)
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
- * 
+ *
  * POST /users/:id/restore - Restore soft-deleted user (admin only)
  * Headers: { Authorization: 'Bearer <token>' }
  * Params: { id: string (UUID) }
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import {
   Controller,
@@ -347,237 +308,10 @@ import {
   PaginationDto,
   UserResponseDto,
 } from './user.dto';
-import { User, UserRole, AccountStatus } from './user.entity';
+import { Users, UserRole, AccountStatus } from './user.entity';
 import { ResponseBuilder } from 'src/api-response';
 
-/**
- * UserController - Handles all HTTP requests for user management in the casino platform
- * Base Route: /users
- * 
- * ==================================================================================
- * AUTHENTICATION & REGISTRATION
- * ==================================================================================
- * 
- * POST /users/register - Register new user account
- * Body: {
- *   email: string (required),
- *   username: string (required, 3-50 chars),
- *   password: string (required, min 8 chars, must include uppercase, lowercase, number),
- *   firstName?: string,
- *   lastName?: string,
- *   dateOfBirth?: Date,
- *   phoneNumber?: string,
- *   country?: string,
- *   currency?: 'USD' | 'EUR' | 'GBP' | 'BTC' | 'ETH',
- *   referredBy?: string (referral code)
- * }
- * 
- * POST /users/login - User login (typically handled by auth module)
- * Body: {
- *   emailOrUsername: string (required),
- *   password: string (required),
- *   twoFactorCode?: string (if 2FA enabled)
- * }
- * 
- * POST /users/logout - User logout
- * Headers: { Authorization: 'Bearer <token>' }
- * 
- * ==================================================================================
- * USER PROFILE
- * ==================================================================================
- * 
- * GET /users - Get all users (paginated, admin only)
- * Headers: { Authorization: 'Bearer <token>' }
- * Query: { page?: number (default 1), limit?: number (default 10) }
- * 
- * GET /users/:id - Get user by ID
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * 
- * GET /users/profile/me - Get current user's profile
- * Headers: { Authorization: 'Bearer <token>' }
- * 
- * PUT /users/:id - Update user profile
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   firstName?: string,
- *   lastName?: string,
- *   phoneNumber?: string,
- *   country?: string,
- *   avatar?: string (URL),
- *   emailNotifications?: boolean,
- *   smsNotifications?: boolean,
- *   promotionalEmails?: boolean
- * }
- * 
- * PATCH /users/:id/password - Change user password
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   currentPassword: string (required),
- *   newPassword: string (required, min 8 chars)
- * }
- * 
- * DELETE /users/:id - Soft delete user account
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * 
- * ==================================================================================
- * VERIFICATION
- * ==================================================================================
- * 
- * POST /users/:id/verify-email - Verify user email
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: { token: string (verification token) }
- * 
- * POST /users/:id/verify-phone - Verify user phone number
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: { otp: string (4-6 digit code) }
- * 
- * POST /users/:id/verify-kyc - Verify user KYC documents (admin only)
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * 
- * ==================================================================================
- * WALLET & BALANCE
- * ==================================================================================
- * 
- * GET /users/:id/balance - Get user's balance information
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * 
- * POST /users/:id/deposit - Deposit funds to user account
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   amount: number (required, min 1),
- *   paymentMethod?: string,
- *   transactionId?: string
- * }
- * 
- * POST /users/:id/withdraw - Withdraw funds from user account
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   amount: number (required, min 1),
- *   paymentMethod?: string,
- *   walletAddress?: string
- * }
- * 
- * POST /users/:id/bonus - Add bonus to user account (admin only)
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   amount: number (required, min 1),
- *   reason?: string,
- *   bonusCode?: string
- * }
- * 
- * ==================================================================================
- * GAMING
- * ==================================================================================
- * 
- * POST /users/:id/wager - Process game wager
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   amount: number (required, min 0.01),
- *   gameId: string (required),
- *   gameName?: string
- * }
- * 
- * POST /users/:id/game-result - Process game result (win/loss)
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   gameId: string (required),
- *   wagerAmount: number (required),
- *   winAmount: number (required, min 0),
- *   isWin: boolean (required),
- *   gameType?: string
- * }
- * 
- * GET /users/:id/stats - Get user gaming statistics
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * 
- * GET /users/leaderboard/top - Get top players leaderboard
- * Query: { limit?: number (default 10, max 100) }
- * 
- * ==================================================================================
- * RESPONSIBLE GAMING
- * ==================================================================================
- * 
- * PUT /users/:id/deposit-limits - Update deposit limits
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   dailyDepositLimit?: number (min 0),
- *   weeklyDepositLimit?: number (min 0),
- *   monthlyDepositLimit?: number (min 0)
- * }
- * 
- * POST /users/:id/self-exclude - Self-exclude account
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   durationInDays: number (required, min 1, max 365),
- *   reason?: string
- * }
- * 
- * DELETE /users/:id/self-exclude - Remove self-exclusion
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * 
- * ==================================================================================
- * SECURITY
- * ==================================================================================
- * 
- * POST /users/:id/2fa/enable - Enable two-factor authentication
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   secret: string (required, 2FA secret),
- *   verificationCode: string (required, 6 digits)
- * }
- * 
- * DELETE /users/:id/2fa/disable - Disable two-factor authentication
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: {
- *   verificationCode: string (required, 6 digits)
- * }
- * 
- * POST /users/:id/unlock - Unlock locked account (admin only)
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * 
- * ==================================================================================
- * ADMIN OPERATIONS
- * ==================================================================================
- * 
- * PATCH /users/:id/role - Update user role (admin only)
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: { role: 'user' | 'vip' | 'admin' }
- * 
- * PATCH /users/:id/status - Update user status (admin only)
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * Body: { status: 'active' | 'suspended' | 'banned' | 'pending_verification' }
- * 
- * DELETE /users/:id/permanent - Permanently delete user (admin only)
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- * 
- * POST /users/:id/restore - Restore soft-deleted user (admin only)
- * Headers: { Authorization: 'Bearer <token>' }
- * Params: { id: string (UUID) }
- */
-@Controller('users')
+@Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -590,9 +324,7 @@ export class UserController {
    */
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
-  async register(
-    @Body(ValidationPipe) createUserDto: CreateUserDto,
-  ) {
+  async register(@Body() createUserDto: CreateUserDto) {
     const user = await this.userService.create(createUserDto);
     return ResponseBuilder.created(
       this.mapToResponseDto(user),
@@ -608,14 +340,12 @@ export class UserController {
    * @access Admin
    */
   @Get()
-  async findAll(
-    @Query(ValidationPipe) paginationDto: PaginationDto,
-  ) {
+  async findAll(@Query(ValidationPipe) paginationDto: PaginationDto) {
     const { page = 1, limit = 10 } = paginationDto;
     const { users, total } = await this.userService.findAll(page, limit);
-    
+
     return ResponseBuilder.paginated(
-      users.map(user => this.mapToResponseDto(user)),
+      users.map((user) => this.mapToResponseDto(user)),
       page,
       limit,
       total,
@@ -681,10 +411,7 @@ export class UserController {
     @Body(ValidationPipe) updatePasswordDto: UpdatePasswordDto,
   ) {
     await this.userService.updatePassword(id, updatePasswordDto.newPassword);
-    return ResponseBuilder.success(
-      null,
-      'Password updated successfully',
-    );
+    return ResponseBuilder.success(null, 'Password updated successfully');
   }
 
   /**
@@ -839,8 +566,8 @@ export class UserController {
     @Param('id') id: string,
     @Body(ValidationPipe) gameResultDto: GameResultDto,
   ) {
-    let user: User;
-    
+    let user: Users;
+
     if (gameResultDto.isWin && gameResultDto.winAmount > 0) {
       user = await this.userService.processWin(id, gameResultDto.winAmount);
     } else {
@@ -850,7 +577,9 @@ export class UserController {
 
     return ResponseBuilder.success(
       { balance: Number(user.balance) },
-      gameResultDto.isWin ? 'Congratulations! You won!' : 'Better luck next time!',
+      gameResultDto.isWin
+        ? 'Congratulations! You won!'
+        : 'Better luck next time!',
     );
   }
 
@@ -874,7 +603,7 @@ export class UserController {
   async getTopPlayers(@Query('limit') limit: number = 10) {
     const users = await this.userService.getTopPlayers(limit);
     return ResponseBuilder.success(
-      users.map(user => this.mapToResponseDto(user)),
+      users.map((user) => this.mapToResponseDto(user)),
       'Leaderboard retrieved successfully',
     );
   }
@@ -926,10 +655,7 @@ export class UserController {
   @Delete(':id/self-exclude')
   async removeSelfExclusion(@Param('id') id: string) {
     await this.userService.removeSelfExclusion(id);
-    return ResponseBuilder.success(
-      null,
-      'Self-exclusion removed successfully',
-    );
+    return ResponseBuilder.success(null, 'Self-exclusion removed successfully');
   }
 
   // ==================== SECURITY ====================
@@ -940,10 +666,7 @@ export class UserController {
    * @access Private
    */
   @Post(':id/2fa/enable')
-  async enable2FA(
-    @Param('id') id: string,
-    @Body('secret') secret: string,
-  ) {
+  async enable2FA(@Param('id') id: string, @Body('secret') secret: string) {
     await this.userService.enable2FA(id, secret);
     return ResponseBuilder.success(
       null,
@@ -984,10 +707,7 @@ export class UserController {
    * @access Admin
    */
   @Patch(':id/role')
-  async updateRole(
-    @Param('id') id: string,
-    @Body('role') role: UserRole,
-  ) {
+  async updateRole(@Param('id') id: string, @Body('role') role: UserRole) {
     const user = await this.userService.updateRole(id, role);
     return ResponseBuilder.updated(
       this.mapToResponseDto(user),
@@ -1043,7 +763,7 @@ export class UserController {
   /**
    * Map User entity to UserResponseDto (excludes sensitive fields)
    */
-  private mapToResponseDto(user: User): UserResponseDto {
+  private mapToResponseDto(user: Users): UserResponseDto {
     return {
       id: user.id,
       email: user.email,
